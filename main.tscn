@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://cln1wov33m0k2"]
+
+[ext_resource type="PackedScene" uid="uid://bpqxa5bkg6dw5" path="res://wall.tscn" id="1"]
+[ext_resource type="Script" uid="uid://c1gfvvwot7dpr" path="res://game.gd" id="1_kek77"]
+[ext_resource type="PackedScene" uid="uid://fjpy2fl1iguo" path="res://kill_plane.tscn" id="2"]
+[ext_resource type="Script" uid="uid://b5vgbb854isme" path="res://music-btn.gd" id="2_efxa6"]
+[ext_resource type="Script" uid="uid://cx16tkx1fkad6" path="res://dropper.gd" id="3"]
+[ext_resource type="Script" uid="uid://cpeyu6mh84do0" path="res://audio.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://880nesyoe88f" path="res://white.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dhr8v1u76huxa" path="res://fruit_textures/box.png" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://o6ys27crtudm" path="res://fruit_textures/title.png" id="7_5vw27"]
+[ext_resource type="Texture2D" uid="uid://dsnkpjjw7qxci" path="res://fruit_textures/bg.png" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://ba64jfmiyh43" path="res://Brave Grassroots.mp3" id="10_4c57u"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+
+[sub_resource type="SphereMesh" id="2"]
+radius = 1.0
+height = 2.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kek77")
+metadata/_edit_horizontal_guides_ = [-160.0]
+
+[node name="Button" type="Button" parent="."]
+z_index = 99
+offset_left = 155.0
+offset_top = -330.0
+offset_right = 227.0
+offset_bottom = -299.0
+text = "播放音樂"
+script = ExtResource("2_efxa6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.96, 0.96)
+script = ExtResource("1_kek77")
+
+[node name="floor" type="StaticBody2D" parent="."]
+z_index = 99
+position = Vector2(0, 292)
+scale = Vector2(24, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(0.0416667, 110)
+scale = Vector2(1, 10)
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="floor"]
+modulate = Color(0.984314, 0.956863, 0.956863, 1)
+position = Vector2(0, -226)
+scale = Vector2(5, 0.5)
+texture = ExtResource("5")
+
+[node name="walls" type="Node" parent="."]
+
+[node name="wall_left_ext" type="StaticBody2D" parent="walls"]
+position = Vector2(-338, 201)
+scale = Vector2(10, 38.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_left_ext"]
+position = Vector2(-0.1, -0.877193)
+shape = SubResource("1")
+
+[node name="wall_right_ext" type="StaticBody2D" parent="walls"]
+position = Vector2(337, 201)
+scale = Vector2(10, 38.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_right_ext"]
+position = Vector2(0, -0.902993)
+shape = SubResource("1")
+
+[node name="wall_left" parent="walls" instance=ExtResource("1")]
+visible = false
+position = Vector2(-220, 27)
+scale = Vector2(2, 25)
+
+[node name="wall_right" parent="walls" instance=ExtResource("1")]
+visible = false
+position = Vector2(220, 27)
+scale = Vector2(2, 25)
+
+[node name="kill_plane4" parent="walls" instance=ExtResource("2")]
+position = Vector2(-337, -268)
+scale = Vector2(10, 10)
+
+[node name="kill_plane6" parent="walls" instance=ExtResource("2")]
+position = Vector2(-337, -67)
+scale = Vector2(10, 10)
+
+[node name="kill_plane7" parent="walls" instance=ExtResource("2")]
+position = Vector2(339, -60)
+scale = Vector2(10, 10)
+
+[node name="kill_plane5" parent="walls" instance=ExtResource("2")]
+position = Vector2(338, -261)
+scale = Vector2(10, 10)
+
+[node name="dropper" type="Node2D" parent="."]
+position = Vector2(0, -296)
+script = ExtResource("3")
+
+[node name="fruit_cursor" type="Node2D" parent="dropper"]
+scale = Vector2(10, 10)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="dropper/fruit_cursor"]
+visible = false
+mesh = SubResource("2")
+
+[node name="sprite" type="Sprite2D" parent="dropper/fruit_cursor"]
+scale = Vector2(0.05, 0.05)
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+script = ExtResource("4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0.176842, 49.9134)
+scale = Vector2(0.450795, 0.345576)
+texture = ExtResource("6_7mycd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-0.392294, 735.256)
+scale = Vector2(1.09039, 1.38615)
+texture = ExtResource("7_5vw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+z_index = -2
+position = Vector2(-5.93804, -134.307)
+scale = Vector2(1.09039, 1.38615)
+texture = ExtResource("7_272bh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_4c57u")
+volume_db = -2.342

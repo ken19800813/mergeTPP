@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://dh3b0d1beoidi"]
+
+[ext_resource type="Script" uid="uid://bfpgw0qml0y2h" path="res://score.gd" id="1_ifnu7"]
+[ext_resource type="SystemFont" uid="uid://gg8bnmsmqucg" path="res://score_font.tres" id="2_ni8s0"]
+[ext_resource type="Texture2D" uid="uid://880nesyoe88f" path="res://white.png" id="2_xkflp"]
+[ext_resource type="Script" uid="uid://dvht6lnlxl5kj" path="res://give_up.gd" id="4_qtv6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwh1w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc28v"]
+font = ExtResource("2_ni8s0")
+font_size = 28
+
+[sub_resource type="GDScript" id="GDScript_8ryb8"]
+
+[sub_resource type="FontFile" id="FontFile_ycd7j"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+fixed_size = 16
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/glyphs/48/advance = Vector2(16, 0)
+cache/0/16/0/glyphs/48/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/48/size = Vector2(0, 0)
+cache/0/16/0/glyphs/48/uv_rect = Rect2(229, 0, 16, 40)
+cache/0/16/0/glyphs/48/texture_idx = 0
+cache/0/16/0/glyphs/56/advance = Vector2(19, 0)
+cache/0/16/0/glyphs/56/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/56/size = Vector2(0, 0)
+cache/0/16/0/glyphs/56/uv_rect = Rect2(180, 0, 19, 40)
+cache/0/16/0/glyphs/56/texture_idx = 0
+cache/0/16/0/glyphs/57/advance = Vector2(16, 0)
+cache/0/16/0/glyphs/57/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/57/size = Vector2(0, 0)
+cache/0/16/0/glyphs/57/uv_rect = Rect2(207, 0, 16, 40)
+cache/0/16/0/glyphs/57/texture_idx = 0
+cache/0/16/0/glyphs/49/advance = Vector2(18, 0)
+cache/0/16/0/glyphs/49/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/49/size = Vector2(0, 0)
+cache/0/16/0/glyphs/49/uv_rect = Rect2(6, 0, 18, 40)
+cache/0/16/0/glyphs/49/texture_idx = 0
+cache/0/16/0/glyphs/50/advance = Vector2(20, 0)
+cache/0/16/0/glyphs/50/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/50/size = Vector2(0, 0)
+cache/0/16/0/glyphs/50/uv_rect = Rect2(28, 0, 20, 40)
+cache/0/16/0/glyphs/50/texture_idx = 0
+cache/0/16/0/glyphs/51/advance = Vector2(19, 0)
+cache/0/16/0/glyphs/51/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/51/size = Vector2(0, 0)
+cache/0/16/0/glyphs/51/uv_rect = Rect2(53, 0, 19, 40)
+cache/0/16/0/glyphs/51/texture_idx = 0
+cache/0/16/0/glyphs/52/advance = Vector2(19, 0)
+cache/0/16/0/glyphs/52/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/52/size = Vector2(0, 0)
+cache/0/16/0/glyphs/52/uv_rect = Rect2(79, 0, 19, 40)
+cache/0/16/0/glyphs/52/texture_idx = 0
+cache/0/16/0/glyphs/53/advance = Vector2(17, 0)
+cache/0/16/0/glyphs/53/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/53/size = Vector2(0, 0)
+cache/0/16/0/glyphs/53/uv_rect = Rect2(104, 0, 17, 40)
+cache/0/16/0/glyphs/53/texture_idx = 0
+cache/0/16/0/glyphs/54/advance = Vector2(14, 0)
+cache/0/16/0/glyphs/54/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/54/size = Vector2(0, 0)
+cache/0/16/0/glyphs/54/uv_rect = Rect2(132, 0, 14, 40)
+cache/0/16/0/glyphs/54/texture_idx = 0
+cache/0/16/0/glyphs/55/advance = Vector2(22, 0)
+cache/0/16/0/glyphs/55/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/55/size = Vector2(0, 0)
+cache/0/16/0/glyphs/55/uv_rect = Rect2(153, 0, 22, 40)
+cache/0/16/0/glyphs/55/texture_idx = 0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+script = SubResource("GDScript_8ryb8")
+
+[sub_resource type="Theme" id="Theme_xulr0"]
+default_font = SubResource("FontFile_ycd7j")
+Label/fonts/font = SubResource("FontFile_ycd7j")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptixw"]
+font = ExtResource("2_ni8s0")
+font_size = 28
+
+[node name="ui" type="Node"]
+
+[node name="floor" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(0, 296)
+scale = Vector2(23.85, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(0, 90)
+scale = Vector2(1, 10)
+shape = SubResource("RectangleShape2D_uwh1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="floor"]
+modulate = Color(0.780392, 0.537255, 0.372549, 1)
+scale = Vector2(5, 5)
+texture = ExtResource("2_xkflp")
+
+[node name="score" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = 4
+offset_left = -239.0
+offset_top = 266.0
+offset_right = 238.0
+offset_bottom = 327.0
+text = "1234567890"
+label_settings = SubResource("LabelSettings_yc28v")
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("1_ifnu7")
+
+[node name="prev_score" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = 4
+offset_left = -235.0
+offset_top = 264.0
+offset_right = 236.0
+offset_bottom = 326.0
+pivot_offset = Vector2(-3, 35)
+theme = SubResource("Theme_xulr0")
+text = "1234567890"
+label_settings = SubResource("LabelSettings_ptixw")
+vertical_alignment = 1
+
+[node name="give_up" type="Button" parent="."]
+visible = false
+offset_left = -243.0
+offset_top = -306.0
+offset_right = -179.0
+offset_bottom = -275.0
+text = "give up"
+script = ExtResource("4_qtv6i")
+
+[connection signal="pressed" from="give_up" to="give_up" method="_on_pressed"]

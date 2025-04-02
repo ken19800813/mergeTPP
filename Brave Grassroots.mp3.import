@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba64jfmiyh43"
+path="res://.godot/imported/Brave Grassroots.mp3-58f0670825bae94a7c398547d18bddb5.mp3str"
+
+[deps]
+
+source_file="res://Brave Grassroots.mp3"
+dest_files=["res://.godot/imported/Brave Grassroots.mp3-58f0670825bae94a7c398547d18bddb5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
