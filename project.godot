@@ -19,7 +19,7 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
-config/build_datetime="2025-04-02T20:58:18"
+config/build_datetime="2025-04-11T08:28:13"
 
 [audio]
 

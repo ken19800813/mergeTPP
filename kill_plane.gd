@@ -1,12 +1,11 @@
 extends Area2D
 
-@onready var dropper : Dropper = $"/root/Node2D/dropper"
+@onready var dropper := get_node("/root/Node2D/dropper")  # 或使用 Autoload 的 Dropper
 var restart_queued := false
 
 func _input(event):
-	if event is InputEventScreenTouch:
-		if event.index == 4:
-			dropper.game_over()
+	if event is InputEventScreenTouch and event.pressed:
+		dropper.game_over()
 
 func _process(_delta):
 	if restart_queued:

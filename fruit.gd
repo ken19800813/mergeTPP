@@ -171,7 +171,7 @@ func get_absorbed(other):
 		mesh.owner = $".."
 		mesh.global_position = global_position
 		
-	var audio: Audio = $"../audio"
+	var audio: Audio = $"../audio"	
 	var sample := audio.combine7
 	var pitch := 1.0
 	var volume := 0.0
@@ -222,11 +222,53 @@ func _process(delta: float):
 			mesh.queue_free()
 		queue_free()
 
+#func do_combining(delta: float):
+	#if game_over:
+		#return
+	#
+#
+	#if cooldown > delta:
+		#cooldown -= delta
+		#return
+	#else:
+		#cooldown = 0
+	#
+	#var colliding_bodies = get_colliding_bodies()
+	#if not colliding_bodies:  # 避免 null 錯誤
+		#return
+		#
+	#for node in colliding_bodies:
+		#if not node or not node.has_method("get_absorbed"):
+			#continue
+#
+	#for node in get_colliding_bodies():
+		#if not node.has_method("get_absorbed") or node.level != level or node.is_queued_for_deletion():
+			#continue
+		#if node.absorber:
+			#continue
+		#if node.cooldown > 0:
+			#continue
+		#if node.get_instance_id() < get_instance_id():
+			#continue
+		#apply_central_impulse(- (node.global_position - global_position) * mass * 2)
+		#cooldown = 0.1
+		#level += 1
+		#var score: Score = $"/root/ui/score"
+		#score.add(level)
+		#if level >= 12:
+			#level = 11
+			#cooldown = 1000
+			#pop()
+			#node.pop()
+		#else:
+			#update_fruit_appearance()
+			#node.get_absorbed(self)
+		#return
+		
 func do_combining(delta: float):
 	if game_over:
 		return
 	
-
 	if cooldown > delta:
 		cooldown -= delta
 		return
@@ -234,15 +276,14 @@ func do_combining(delta: float):
 		cooldown = 0
 	
 	var colliding_bodies = get_colliding_bodies()
-	if not colliding_bodies:  # 避免 null 錯誤
+	if not colliding_bodies:  # 確保不會是 null
 		return
 		
 	for node in colliding_bodies:
-		if not node or not node.has_method("get_absorbed"):
+		if not is_instance_valid(node) or not node.has_method("get_absorbed"):
 			continue
 
-	for node in get_colliding_bodies():
-		if not node.has_method("get_absorbed") or node.level != level or node.is_queued_for_deletion():
+		if node.level != level or node.is_queued_for_deletion():
 			continue
 		if node.absorber:
 			continue
@@ -250,11 +291,15 @@ func do_combining(delta: float):
 			continue
 		if node.get_instance_id() < get_instance_id():
 			continue
+
 		apply_central_impulse(- (node.global_position - global_position) * mass * 2)
 		cooldown = 0.1
 		level += 1
+
 		var score: Score = $"/root/ui/score"
-		score.add(level)
+		if is_instance_valid(score):
+			score.add(level)
+
 		if level >= 12:
 			level = 11
 			cooldown = 1000
@@ -324,3 +369,11 @@ func pop():
 	volume = (level - 8) * 1.0
 	audio.play_audio(sample, pitch - randf() * 0.01, volume - randf() * 2 - 5)
 	
+
+func apply_shake_force():
+	# 給水果一個隨機的左右晃動力
+	var force = Vector2(randf_range(-50, 50), randf_range(-20, 20)) * mass
+	apply_impulse(force)
+
+	var random_force = Vector2(randf_range(-100, 100), randf_range(-50, 50)) * mass
+	apply_impulse(random_force)

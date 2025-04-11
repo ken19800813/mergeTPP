@@ -24,9 +24,9 @@ metadata/_edit_horizontal_guides_ = [-160.0]
 
 [node name="Button" type="Button" parent="."]
 z_index = 99
-offset_left = 155.0
+offset_left = 210.0
 offset_top = -330.0
-offset_right = 227.0
+offset_right = 250.0
 offset_bottom = -299.0
 text = "播放音樂"
 script = ExtResource("2_efxa6")
@@ -132,3 +132,5 @@ texture = ExtResource("7_272bh")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_4c57u")
 volume_db = -2.342
+autoplay = true
+parameters/looping = true
